@@ -1,0 +1,326 @@
+/* ==========================================================================
+   GABRIEL.EXE // NEXUS — CORE STYLING & DESIGN SYSTEM
+   Palette:
+     Black: #08080D | Dark Grey: #14141D | Neon Purple: #A855F7 
+     Electric Blue: #38BDF8 | Soft White: #F4F4F8
+   ========================================================================== */
+
+:root {
+  --bg-primary: #08080d;
+  --bg-secondary: #101018;
+  --bg-surface: #14141d;
+  --bg-surface-elevated: #1c1c28;
+  --bg-glass: rgba(20, 20, 29, 0.75);
+  --bg-glass-heavy: rgba(8, 8, 13, 0.92);
+
+  --neon-purple: #a855f7;
+  --neon-purple-glow: rgba(168, 85, 247, 0.45);
+  --neon-purple-dim: rgba(168, 85, 247, 0.15);
+
+  --neon-blue: #38bdf8;
+  --neon-blue-glow: rgba(56, 189, 248, 0.45);
+  --neon-blue-dim: rgba(56, 189, 248, 0.15);
+
+  --accent-cyan: #06b6d4;
+  --accent-pink: #ec4899;
+
+  --text-main: #f4f4f8;
+  --text-secondary: #a1a1aa;
+  --text-dim: #71717a;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow-purple: rgba(168, 85, 247, 0.35);
+  --border-glow-blue: rgba(56, 189, 248, 0.35);
+
+  --font-display: 'Orbitron', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+}
+
+[data-theme="light"] {
+  --bg-primary: #f0f2f8;
+  --bg-secondary: #e6e9f2;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f8fafc;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --bg-glass-heavy: rgba(240, 242, 248, 0.95);
+
+  --neon-purple: #9333ea;
+  --neon-purple-glow: rgba(147, 51, 234, 0.25);
+  --neon-purple-dim: rgba(147, 51, 234, 0.08);
+
+  --neon-blue: #0284c7;
+  --neon-blue-glow: rgba(2, 132, 199, 0.25);
+  --neon-blue-dim: rgba(2, 132, 199, 0.08);
+
+  --text-main: #0f172a;
+  --text-secondary: #475569;
+  --text-dim: #64748b;
+
+  --border-subtle: rgba(15, 23, 42, 0.12);
+  --border-glow-purple: rgba(147, 51, 234, 0.3);
+  --border-glow-blue: rgba(2, 132, 199, 0.3);
+}
+
+/* Reset and base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Accessibility focus indicator */
+:focus-visible {
+  outline: 2px solid var(--neon-blue);
+  outline-offset: 3px;
+  box-shadow: 0 0 10px var(--neon-blue-glow);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-purple), var(--neon-blue));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-blue);
+}
+
+/* Cybernetic Scanline Overlay */
+.cyber-scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.02),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.02)
+  );
+  background-size: 100% 4px, 6px 100%;
+  z-index: 998;
+  opacity: 0.35;
+}
+
+[data-theme="light"] .cyber-scanlines {
+  display: none;
+}
+
+/* Digital grid overlay */
+.cyber-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(168, 85, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+}
+
+/* Cyber Button Styles */
+.cyber-button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.6rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(135deg, #a855f7 0%, #38bdf8 100%);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
+
+.cyber-button-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.6), inset 0 0 14px rgba(255, 255, 255, 0.4);
+}
+
+.cyber-button-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.cyber-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-main);
+  background: rgba(20, 20, 29, 0.6);
+  border: 1px solid var(--border-glow-purple);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.cyber-button-secondary:hover {
+  border-color: var(--neon-blue);
+  color: var(--neon-blue);
+  background: rgba(56, 189, 248, 0.1);
+  box-shadow: 0 0 15px var(--neon-blue-dim);
+  transform: translateY(-1px);
+}
+
+/* Cyber Card / Glass Panel */
+.cyber-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cyber-panel-glow {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(168, 85, 247, 0.2);
+}
+
+.cyber-panel:hover {
+  border-color: var(--border-glow-purple);
+}
+
+/* Corner bracket accents */
+.cyber-corner-brackets {
+  position: relative;
+}
+.cyber-corner-brackets::before,
+.cyber-corner-brackets::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--neon-blue);
+  pointer-events: none;
+}
+.cyber-corner-brackets::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--neon-blue);
+  border-left: 2px solid var(--neon-blue);
+}
+.cyber-corner-brackets::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--neon-purple);
+  border-right: 2px solid var(--neon-purple);
+}
+
+/* Glowing text utilities */
+.text-glow-purple {
+  text-shadow: 0 0 12px var(--neon-purple-glow);
+}
+.text-glow-blue {
+  text-shadow: 0 0 12px var(--neon-blue-glow);
+}
+
+/* Glitch animation */
+@keyframes cyber-glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
+}
+
+.glitch-effect {
+  animation: cyber-glitch 0.3s ease infinite;
+}
+
+/* Pulse beacon */
+@keyframes beacon-pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.beacon-ring {
+  animation: beacon-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Floating animation */
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+/* Particle cursor canvas layer */
+#cursor-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  #cursor-canvas {
+    display: none !important;
+  }
+}
+
